@@ -19,6 +19,16 @@ module.exports = function(app) {
         })
     });
 
+    //fetch all emails
+    app.get("/email/search", function(req, res) {
+        Emails.find({}, function(err, todos) {
+            if (err) {
+                throw err;
+            }
+            res.send(todos);
+        })
+    });
+
     app.delete("/email/delete", function(req, res) {
         Emails.findByIdAndRemove(req.body.id, function(err, todo) {
             if (err) {
